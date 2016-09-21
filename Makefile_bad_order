@@ -1,0 +1,2 @@
+all:
+	$(CC) client-tutorial_bad_order.c -o client-tutorial_bad_order.x -I$(AWA_INSTALL_PATH)/include -L$(AWA_INSTALL_PATH)/lib -lawa

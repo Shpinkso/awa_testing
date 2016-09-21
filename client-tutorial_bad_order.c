@@ -26,7 +26,7 @@ static void DefineHeaterObject(AwaClientSession * session)
     ret = AwaClientDefineOperation_Add(operation, objectDefinition);
     if (ret)
         printf("AwaClientDefineOperation_Add failed with return %x\n\r",ret);
-    // Perform the Define operation as above
+    // Perform the Define operation defined above
     ret = AwaClientDefineOperation_Perform(operation, OPERATION_PERFORM_TIMEOUT);
     if (ret)
         printf("AwaClientDefineOperation_Perform failed with return %x\n\r",ret);
@@ -42,10 +42,6 @@ static void SetInitialValues(AwaClientSession * session)
     // Create new Set operation
     AwaClientSetOperation * operation = AwaClientSetOperation_New(session);
 
-    // Create an instance (0) of object 1000
-    ret = AwaClientSetOperation_CreateObjectInstance(operation, "/1000/0");
-    if (ret)
-        printf("AwaClientSetOperation_CreateObjectInstance failed with return %x\n\r",ret);
     // Create a resource on instance 0 of object 1000, resource type 101
     ret = AwaClientSetOperation_CreateOptionalResource(operation, "/1000/0/101");
     if (ret)
@@ -62,7 +58,11 @@ static void SetInitialValues(AwaClientSession * session)
     ret = AwaClientSetOperation_CreateOptionalResource(operation, "/1000/0/104");
     if (ret)
         printf("AwaClientSetOperation_CreateOptionalResource 104 failed with return %x\n\r",ret);
-    // Perform the above
+    // Create an instance (0) of object 1000
+    ret = AwaClientSetOperation_CreateObjectInstance(operation, "/1000/0");
+    if (ret)
+        printf("AwaClientSetOperation_CreateObjectInstance failed with return %x\n\r",ret);
+    // Perform the above.
     ret = AwaClientSetOperation_Perform(operation, OPERATION_PERFORM_TIMEOUT);
     if (ret)
         printf("AwaClientSetOperation_Perform failed with return %x\n\r",ret);
